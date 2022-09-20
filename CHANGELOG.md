@@ -1,3 +1,3 @@
 ## v2.2.3
 
-* Initial Release
+* Fix analytics in Studio
