@@ -1,4 +1,3 @@
-local RunService = game:GetService("RunService")
 local validation = require(script.Parent.Validation)
 local version = require(script.Parent.Version)
 
