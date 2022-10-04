@@ -4,7 +4,7 @@ local logger = require(script.Parent.Logger)
 local utilities = require(script.Parent.Utilities)
 
 function validation:validateCustomDimensions(customDimensions)
-	return validation:validateArrayOfStrings(20, 32, false, "custom dimensions", customDimensions)
+	return validation:validateArrayOfStrings(32, false, "custom dimensions", customDimensions)
 end
 
 function validation:validateDimension(dimensions, dimension)
@@ -21,7 +21,7 @@ function validation:validateDimension(dimensions, dimension)
 end
 
 function validation:validateResourceCurrencies(resourceCurrencies)
-	if not validation:validateArrayOfStrings(20, 64, false, "resource currencies", resourceCurrencies) then
+	if not validation:validateArrayOfStrings(64, false, "resource currencies", resourceCurrencies) then
 		return false
 	end
 
@@ -37,7 +37,7 @@ function validation:validateResourceCurrencies(resourceCurrencies)
 end
 
 function validation:validateResourceItemTypes(resourceItemTypes)
-	if not validation:validateArrayOfStrings(20, 32, false, "resource item types", resourceItemTypes) then
+	if not validation:validateArrayOfStrings(32, false, "resource item types", resourceItemTypes) then
 		return false
 	end
 
@@ -60,7 +60,7 @@ function validation:validateEventPartCharacters(eventPart)
 	return true
 end
 
-function validation:validateArrayOfStrings(maxCount, maxStringLength, allowNoValues, logTag, arrayOfStrings)
+function validation:validateArrayOfStrings(maxStringLength, allowNoValues, logTag, arrayOfStrings)
 	local arrayTag = logTag
 
 	if not arrayTag then
@@ -76,12 +76,6 @@ function validation:validateArrayOfStrings(maxCount, maxStringLength, allowNoVal
 	-- check if empty
 	if not allowNoValues and #arrayOfStrings == 0 then
 		logger:w(arrayTag .. " validation failed: array cannot be empty.")
-		return false
-	end
-
-	-- check if exceeding max count
-	if maxCount > 0 and #arrayOfStrings > maxCount then
-		logger:w(arrayTag .. " validation failed: array cannot exceed " .. tostring(maxCount) .. " values. It has " .. #arrayOfStrings .. " values.")
 		return false
 	end
 
